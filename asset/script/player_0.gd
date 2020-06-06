@@ -72,8 +72,8 @@ func _rotate(event):
 	"""Read the user's mouse and smoothly rotate them"""
 	# FIXME: SOMETHING IS REALLY WEIRD HERE!
 	if event is InputEventMouseMotion:
-		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y)) 
-		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x)) 
+		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y))
+		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x))
 		rotation.x = clamp(rotation.x, deg2rad(-90), deg2rad(90))
 
 
@@ -185,6 +185,9 @@ func _user_fire(delta):
 		p = projectile.instance()
 		add_child(p)
 		# p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
+
+
+
 
 
 

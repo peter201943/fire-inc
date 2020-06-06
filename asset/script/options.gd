@@ -18,8 +18,14 @@ class Player:
 			var y = 0.03
 		var sensitivity = Sensitivity.new()
 	class Move:
-		var help = "how quickly the player moves"
+		var help = """
+			speed: how quickly the player moves, jump: how high the player jumps,
+			acceleration: how quickly the player gains speed, fall: how quickly the player falls down
+			"""
 		var speed = 10
+		var jump = 10
+		var acceleration = 50
+		var fall = 20
 	var mouse = Mouse.new()
 	var move = Move.new()
 var player = Player.new()
@@ -37,7 +43,7 @@ class Difficulty:
 			var spread = 0.5
 		var burn = Burn.new()
 		class Disperse:
-			var help = "how quickly the player puts out the fire"
+			var help = "rate: how quickly the player puts out the fire"
 			var rate = 10
 		var disperse = Disperse.new()
 	var fire = Fire.new()

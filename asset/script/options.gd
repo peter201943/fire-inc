@@ -25,9 +25,26 @@ class Player:
 		var speed = 5
 		var jump = 500
 		var acceleration = 50
-		var fall = 200
+		var fall = 500
 	var mouse = Mouse.new()
 	var move = Move.new()
+	var api = """
+player
+	help
+	mouse
+		help
+		sensitivity
+			help
+			x
+			y
+	move
+		help
+		speed
+		jump
+		acceleration
+		fall
+	api
+"""
 var player = Player.new()
 
 
@@ -57,6 +74,27 @@ class Difficulty:
 		var help = "how many points the player has"
 		var rate = 10
 	var score = Score.new()
+	var api = """
+difficulty
+	help
+	fire
+		help
+		burn
+			rate
+			spread
+		disperse
+			help
+			rate
+	insurance
+		help
+		penalty
+		reward
+		bonus
+	score
+		help
+		rate
+	api
+"""
 var difficulty = Difficulty.new()
 
 

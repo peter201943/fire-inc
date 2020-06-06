@@ -63,11 +63,13 @@ class Difficulty:
 			var help = """
 			rate: how quickly the player fires,
 			size: how big the projectiles are,
-			damage: how powerful a single projectile is
+			damage: how powerful a single projectile is,
+			speed: how quickly a projectile travels
 			"""
 			var rate = 10
 			var size = 10
 			var damage = 10
+			var speed = 100
 		var disperse = Disperse.new()
 	var fire = Fire.new()
 	class Insurance:
@@ -98,6 +100,7 @@ difficulty
 			rate
 			size
 			damage
+			speed
 	insurance
 		help
 		penalty

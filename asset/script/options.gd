@@ -1,7 +1,11 @@
 extends Node
 
 
+
+
 var help = "various gameplay options for the player, difficulty"
+
+
 
 
 class Player:
@@ -32,14 +36,19 @@ class Difficulty:
 			var rate = 0.5
 			var spread = 0.5
 		var burn = Burn.new()
+		class Disperse:
+			var help = "how quickly the player puts out the fire"
+			var rate = 10
+		var disperse = Disperse.new()
 	var fire = Fire.new()
 	class Insurance:
-		var help = "penalties, points, and game overs"
+		var help = "penalty: points lost per infraction, reward: points gained per action, bonus: ???"
 		var penalty = 100
 		var reward = 200
 		var bonus = 500
 	var insurance = Insurance.new()
 	class Score:
+		var help = "how many points the player has"
 		var rate = 10
 	var score = Score.new()
 var difficulty = Difficulty.new()

@@ -24,7 +24,7 @@ func _bind():
 	var options = self.get_node("../optionsN")
 	player = options.player
 	difficulty = options.difficulty
-	status = self.get_node("../statusN").status
+	status = self.get_node("../statusN")
 
 
 

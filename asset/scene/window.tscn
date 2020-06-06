@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Assets/Window/Window.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Window/3DParticleFire.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Window/window.png" type="Texture" id=3]
+[ext_resource path="res://asset/script/window.gd" type="Script" id=1]
+[ext_resource path="res://asset/misc/window.png" type="Texture" id=2]
+[ext_resource path="res://asset/scene/3DParticleFire.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -16,7 +16,7 @@ albedo_color = Color( 0, 1, 0.811765, 1 )
 [sub_resource type="SpatialMaterial" id=5]
 params_use_alpha_scissor = true
 params_alpha_scissor_threshold = 0.98
-albedo_texture = ExtResource( 3 )
+albedo_texture = ExtResource( 2 )
 
 [node name="Window" type="Spatial"]
 script = ExtResource( 1 )
@@ -36,5 +36,5 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0.98989
 mesh = SubResource( 4 )
 material/0 = SubResource( 5 )
 
-[node name="Fire" parent="." instance=ExtResource( 2 )]
+[node name="Fire" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.04011, 0.155062, 1.07075 )

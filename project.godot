@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Fire Inc"
 run/main_scene="res://asset/scene/test_0.tscn"
-config/icon="res://icon.png"
+config/icon="res://asset/misc/icon.png"
 
 [input]
 
@@ -54,4 +54,4 @@ fire={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://asset/misc/default_env.tres"

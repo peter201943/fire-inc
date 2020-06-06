@@ -89,4 +89,4 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Building" parent="." instance=ExtResource( 4 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.43384, 3.95114, -15.3829 )
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 3.96108, -15.3763 )

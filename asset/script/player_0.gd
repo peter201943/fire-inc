@@ -6,6 +6,10 @@ extends KinematicBody
 # https://github.com/GarbajYT/godot-projectile-weapons/blob/master/ProjectileStarter.gd
 # try this later: https://gitlab.com/monnef/golden-gadget
 # https://godotengine.org/qa/7850/how-to-combine-x-and-y-rotation-but-leave-z-untouched
+# https://godotengine.org/qa/234/how-to-get-the-screen-dimensions-in-gdscript
+# https://godotengine.org/qa/5878/set-mouse-position
+# https://docs.godotengine.org/en/stable/tutorials/inputs/mouse_and_input_coordinates.html
+# http://kidscancode.org/godot_recipes/2d/screen_wrap/
 
 
 # ARG! Curse you GDScript!
@@ -46,12 +50,24 @@ var p # TEMP TEMP TEMP
 
 
 
+# mouse problems
+var screen_width = OS.get_screen_size().x
+var screen_height = OS.get_screen_size().y
+var half_screen_height = screen_height / 2
+var half_screen_width = screen_width / 2
+onready var screen_size = OS.get_window_size()
+
+
+
+
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	direction = Vector3()
 	velocity = Vector3()
 	_bind()
 	_test_docs()
 	# set_axis_lock(, true)			# F U GODOT!
+	print(OS.get_window_size())
 
 
 
@@ -76,17 +92,38 @@ func _rotate(event):
 	"""Read the user's mouse and smoothly rotate them"""
 	# FIXME: SOMETHING IS REALLY WEIRD HERE!
 	if event is InputEventMouseMotion:
-		"""
-		set_rotation(Vector3(
-			deg2rad(-event.relative.y * options.mouse.sensitivity.x),
-			deg2rad(-event.relative.x * options.mouse.sensitivity.y),
-			0
-			))
-		"""
+		
+		# rotate the player
 		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y))
 		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x))
+		
+		# prevent gimbal lock
 		rotation.x = clamp(rotation.x, deg2rad(-90), deg2rad(90))
+		
+		# prevent rolling
 		rotation.z = 0
+		
+		# wrap mouse around screen (horizontal)
+		if event.position[0] == 0:
+			print("GO RIGHT")
+			get_viewport().warp_mouse(Vector2(half_screen_height, screen_width))
+		elif event. position[0] == screen_width:
+			print("GO LEFT")
+			get_viewport().warp_mouse(Vector2(half_screen_height, 0))
+		
+		# wrap mouse around screen (vertical)
+		if event.position[1] == 0:
+			print("GO UP")
+			get_viewport().warp_mouse(Vector2(screen_height, half_screen_width))
+		elif event. position[1] == screen_height:
+			print("GO DOWN")
+			get_viewport().warp_mouse(Vector2(0, half_screen_width))
+			
+		# alternative mouse wrapping
+		get_viewport().warp_mouse(Vector2(
+			wrapf(event.position.x, 0, screen_size.x),
+			wrapf(event.position.y, 0, screen_size.y
+			)))
 
 
 

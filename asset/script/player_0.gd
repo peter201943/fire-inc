@@ -83,6 +83,7 @@ func _test_docs():
 func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
 	_fall( _user_jump( _walk( _user_move( args ) ) ) )
+	_user_fire()
 
 
 
@@ -150,6 +151,10 @@ func _user_move(args):
 	return [delta, direction.normalized(), velocity]
 
 
+
+
+func _user_fire():
+	pass
 
 
 

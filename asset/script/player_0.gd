@@ -11,6 +11,7 @@ extends KinematicBody
 # - No first class functions !!!
 # - No inline functions !!!
 # - No tuples ?!?!?!?!?!
+#     - cannot pass multiple arguments between functions!!! GRRRR
 
 
 
@@ -54,6 +55,12 @@ func _bind():
 
 
 func _input(event):
+	_rotate(event)
+
+
+
+
+func _rotate(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y)) 
 		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x)) 
@@ -72,7 +79,7 @@ func _test_docs():
 
 
 func _physics_process(delta):
-	var args = [delta, Vector3(0.0, direction.y, 0.0)]
+	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
 	print( _fall( _user_jump( _walk( _user_move( args ) ) ) ) )
 
 
@@ -82,14 +89,14 @@ func _physics_process(delta):
 func _user_jump(args):
 	var delta = args[0]
 	var direction = args[1]
+	var velocity = args[2]
 	
 	if not is_on_floor():
 		direction.y -= options.move.fall * delta
-		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		direction.y = options.move.jump
 	
-	return [delta, direction]
+	return [delta, direction, velocity]
 
 
 
@@ -97,8 +104,9 @@ func _user_jump(args):
 func _fall(args):
 	var delta = args[0]
 	var direction = args[1]
+	var velocity = args[2]
 	move_and_slide(direction, Vector3.UP)
-	return [delta, direction]
+	return [delta, direction, velocity]
 
 
 
@@ -106,8 +114,10 @@ func _fall(args):
 func _walk(args):
 	var delta = args[0]
 	var direction = args[1]
-	move_and_slide(direction, Vector3.UP)
-	return [delta, direction]
+	var velocity = args[2]
+	velocity = velocity.linear_interpolate(direction * options.move.speed, options.move.acceleration * delta)
+	velocity = move_and_slide(velocity, Vector3.UP)
+	return [delta, direction, velocity]
 
 
 
@@ -116,6 +126,7 @@ func _user_move(args):
 	
 	var delta = args[0]
 	var direction = args[1]
+	var velocity = args[2]
 	
 	if Input.is_action_pressed("move_forward"):
 		direction -= transform.basis.z
@@ -126,7 +137,7 @@ func _user_move(args):
 	elif Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
 	
-	return [delta, direction.normalized()]
+	return [delta, direction.normalized(), velocity]
 
 
 

@@ -28,10 +28,16 @@ var status			# status of the player at any given moment
 
 
 
+
 # movement
 var direction
 var velocity
 var can_jump = false
+
+
+
+# gun
+onready var projectile = preload("res://asset/scene/projectile.tscn")
 
 
 
@@ -154,7 +160,9 @@ func _user_move(args):
 
 
 func _user_fire():
-	pass
+	if Input.is_action_just_pressed("fire"):
+		var p = projectile.instance()
+		add_child(p)
 
 
 

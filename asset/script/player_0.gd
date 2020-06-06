@@ -68,6 +68,7 @@ func _input(event):
 
 
 func _rotate(event):
+	"""Read the user's mouse and smoothly rotate them"""
 	if event is InputEventMouseMotion:
 		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y)) 
 		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x)) 
@@ -89,13 +90,16 @@ func _test_docs():
 func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
 	_fall( _user_jump( _walk( _user_move( args ) ) ) )
-	_user_fire()
+	_user_fire(delta)
 
 
 
 
 
 func _user_jump(args):
+	
+	"""Check if the user can jump and if they want to jump"""
+	
 	var delta = args[0]
 	var direction = args[1]
 	var velocity = args[2]
@@ -115,6 +119,9 @@ func _user_jump(args):
 
 
 func _fall(args):
+	
+	"""Apply forces to the player when jumping"""
+	
 	var delta = args[0]
 	var direction = args[1]
 	var velocity = args[2]
@@ -127,6 +134,9 @@ func _fall(args):
 
 
 func _walk(args):
+	
+	"""Moves the player in the direction they want to fo"""
+	
 	var delta = args[0]
 	var direction = args[1]
 	var velocity = args[2]
@@ -140,6 +150,8 @@ func _walk(args):
 
 
 func _user_move(args):
+	
+	"""Check if the user wants to move"""
 	
 	var delta = args[0]
 	var direction = args[1]
@@ -159,8 +171,11 @@ func _user_move(args):
 
 
 
-func _user_fire():
+func _user_fire(delta):
+	"""Check if the user wants to fire and do so"""
 	if Input.is_action_just_pressed("fire"):
+		#for i in range(delta / difficulty.disperse.rate):
+		# FIXME
 		var p = projectile.instance()
 		add_child(p)
 

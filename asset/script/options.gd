@@ -1,18 +1,20 @@
 extends Node
 
 
+var help = "various gameplay options for the player, difficulty"
 
 
 class Player:
+	var help = "the user's config options for the player"
 	class Mouse:
-		var sensitivity = 0.03
-		class X:
-			var sensitivity_offset = +0.01
-		class Y:
-			var sensitivity_offset = -0.01
-		var x = X.new()
-		var y = Y.new()
+		var help = "user options for the mouse"
+		class Sensitivity:
+			var help = "how quickly the mouse rotates on the x and y dimensions"
+			var x = 0.03
+			var y = 0.03
+		var sensitivity = Sensitivity.new()
 	class Move:
+		var help = "how quickly the player moves"
 		var speed = 10
 	var mouse = Mouse.new()
 	var move = Move.new()
@@ -22,12 +24,24 @@ var player = Player.new()
 
 
 class Difficulty:
+	var help = "how hard and what to make hard"
 	class Fire:
+		var help = "settings for building burning"
 		class Burn:
+			var help = "rate: how quickly a building loses points, spread: how much more damage a building takes over time"
 			var rate = 0.5
 			var spread = 0.5
 		var burn = Burn.new()
 	var fire = Fire.new()
+	class Insurance:
+		var help = "penalties, points, and game overs"
+		var penalty = 100
+		var reward = 200
+		var bonus = 500
+	var insurance = Insurance.new()
+	class Score:
+		var rate = 10
+	var score = Score.new()
 var difficulty = Difficulty.new()
 
 

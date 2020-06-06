@@ -5,6 +5,9 @@ extends KinematicBody
 
 # https://github.com/GarbajYT/godot-projectile-weapons/blob/master/ProjectileStarter.gd
 # try this later: https://gitlab.com/monnef/golden-gadget
+# https://godotengine.org/qa/7850/how-to-combine-x-and-y-rotation-but-leave-z-untouched
+
+
 # ARG! Curse you GDScript!
 #
 # Peter's Grievances:
@@ -48,6 +51,7 @@ func _ready():
 	velocity = Vector3()
 	_bind()
 	_test_docs()
+	# set_axis_lock(, true)			# F U GODOT!
 
 
 
@@ -72,9 +76,17 @@ func _rotate(event):
 	"""Read the user's mouse and smoothly rotate them"""
 	# FIXME: SOMETHING IS REALLY WEIRD HERE!
 	if event is InputEventMouseMotion:
+		"""
+		set_rotation(Vector3(
+			deg2rad(-event.relative.y * options.mouse.sensitivity.x),
+			deg2rad(-event.relative.x * options.mouse.sensitivity.y),
+			0
+			))
+		"""
 		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y))
 		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x))
 		rotation.x = clamp(rotation.x, deg2rad(-90), deg2rad(90))
+		rotation.z = 0
 
 
 
@@ -148,7 +160,7 @@ func _walk(args):
 	var velocity = args[2]
 	
 	velocity = velocity.linear_interpolate(direction * options.move.speed, options.move.acceleration * delta)
-	velocity = move_and_slide(velocity, Vector3.UP)
+	velocity = move_and_slide(Vector3(velocity[0], 0, velocity[2]), Vector3.UP)
 	
 	return [delta, direction, velocity]
 

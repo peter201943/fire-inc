@@ -58,9 +58,6 @@ mesh = SubResource( 3 )
 skin = SubResource( 4 )
 material/0 = SubResource( 7 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.999895, 4.65612e-10, -0.0145203, -0.00680321, 0.883447, 0.468482, 0.0128279, 0.468531, -0.883354, -3.16878, 5.70014, -9.39556 )
-
 [node name="playerKB" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.159584, 3.0087, 0.0738754 )
 script = ExtResource( 1 )

@@ -60,8 +60,14 @@ class Difficulty:
 			var spread = 0.5
 		var burn = Burn.new()
 		class Disperse:
-			var help = "rate: how quickly the player puts out the fire"
+			var help = """
+			rate: how quickly the player fires,
+			size: how big the projectiles are,
+			damage: how powerful a single projectile is
+			"""
 			var rate = 10
+			var size = 10
+			var damage = 10
 		var disperse = Disperse.new()
 	var fire = Fire.new()
 	class Insurance:
@@ -70,6 +76,11 @@ class Difficulty:
 		var reward = 200
 		var bonus = 500
 	var insurance = Insurance.new()
+	class Buildings:
+		var help = "how many windows, window fire size, etc"
+		var total_windows = 8
+		var fire_windows = 5
+	var buildings = Buildings.new()
 	class Score:
 		var help = "how many points the player has"
 		var rate = 10
@@ -85,11 +96,16 @@ difficulty
 		disperse
 			help
 			rate
+			size
+			damage
 	insurance
 		help
 		penalty
 		reward
 		bonus
+	buildings
+		total_windows
+		fire_windows
 	score
 		help
 		rate

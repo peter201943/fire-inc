@@ -66,7 +66,7 @@ class Difficulty:
 			damage: how powerful a single projectile is,
 			speed: how quickly a projectile travels
 			"""
-			var rate = 10
+			var rate = 0.1
 			var size = 10
 			var damage = 10
 			var speed = 100

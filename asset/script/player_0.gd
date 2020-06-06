@@ -46,28 +46,23 @@ var can_jump = false
 # gun
 onready var projectile = preload("res://asset/scene/projectile.tscn")
 var p # TEMP TEMP TEMP
-
-
-
-
-# mouse problems
-var screen_width = OS.get_screen_size().x
-var screen_height = OS.get_screen_size().y
-var half_screen_height = screen_height / 2
-var half_screen_width = screen_width / 2
-onready var screen_size = OS.get_window_size()
+var fire_delay = 1
 
 
 
 
 func _ready():
+	
+	# Keep mouse in window
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	# reset direction and velocity
 	direction = Vector3()
 	velocity = Vector3()
+	
+	# misc
 	_bind()
 	_test_docs()
-	# set_axis_lock(, true)			# F U GODOT!
-	print(OS.get_window_size())
 
 
 
@@ -102,28 +97,6 @@ func _rotate(event):
 		
 		# prevent rolling
 		rotation.z = 0
-		
-		# wrap mouse around screen (horizontal)
-		if event.position[0] == 0:
-			print("GO RIGHT")
-			get_viewport().warp_mouse(Vector2(half_screen_height, screen_width))
-		elif event. position[0] == screen_width:
-			print("GO LEFT")
-			get_viewport().warp_mouse(Vector2(half_screen_height, 0))
-		
-		# wrap mouse around screen (vertical)
-		if event.position[1] == 0:
-			print("GO UP")
-			get_viewport().warp_mouse(Vector2(screen_height, half_screen_width))
-		elif event. position[1] == screen_height:
-			print("GO DOWN")
-			get_viewport().warp_mouse(Vector2(0, half_screen_width))
-			
-		# alternative mouse wrapping
-		get_viewport().warp_mouse(Vector2(
-			wrapf(event.position.x, 0, screen_size.x),
-			wrapf(event.position.y, 0, screen_size.y
-			)))
 
 
 
@@ -228,12 +201,11 @@ func _user_move(args):
 
 func _user_fire(delta):
 	"""Check if the user wants to fire and do so"""
-	if Input.is_action_just_pressed("fire"):
-		#for i in range(delta / difficulty.disperse.rate):
-		# FIXME
+	if Input.is_action_pressed("fire") and fire_delay <= 0:
+		fire_delay = difficulty.fire.disperse.rate
 		p = projectile.instance()
 		add_child(p)
-		# p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
+	fire_delay -= delta
 
 
 

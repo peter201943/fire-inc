@@ -1,6 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/window-1798492_960_720.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Window/window.png" type="Texture" id=1]
+
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.511111, 1 )

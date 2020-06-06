@@ -28,7 +28,7 @@ func _ready():
 	for y in range(ROWS):
 		WINDOWS.append([])
 		for x in range(COLUMNS):
-			var window = load("res://Window.tscn").instance()
+			var window = load("res://Assets/Window/Window.tscn").instance()
 			window.name = "(" + str(x) + ", " + str(y) + ")"
 			
 			window.translation = Vector3(

@@ -38,6 +38,7 @@ var can_jump = false
 
 # gun
 onready var projectile = preload("res://asset/scene/projectile.tscn")
+var p # TEMP TEMP TEMP
 
 
 
@@ -85,6 +86,7 @@ func _test_docs():
 	print(difficulty.help)
 	print(options.move.jump)
 	print(difficulty.fire.disperse.help)
+	print(difficulty.fire.disperse.speed)
 
 
 
@@ -93,6 +95,8 @@ func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
 	_fall( _user_jump( _walk( _user_move( args ) ) ) )
 	_user_fire(delta)
+	if p:
+		p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
 
 
 
@@ -178,9 +182,9 @@ func _user_fire(delta):
 	if Input.is_action_just_pressed("fire"):
 		#for i in range(delta / difficulty.disperse.rate):
 		# FIXME
-		var p = projectile.instance()
+		p = projectile.instance()
 		add_child(p)
-		p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
+		# p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
 
 
 

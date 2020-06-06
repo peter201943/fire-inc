@@ -14,18 +14,18 @@ class Player:
 		var help = "user options for the mouse"
 		class Sensitivity:
 			var help = "how quickly the mouse rotates on the x and y dimensions"
-			var x = 0.03
-			var y = 0.03
+			var x = 0.10
+			var y = 0.10
 		var sensitivity = Sensitivity.new()
 	class Move:
 		var help = """
 			speed: how quickly the player moves, jump: how high the player jumps,
 			acceleration: how quickly the player gains speed, fall: how quickly the player falls down
 			"""
-		var speed = 10
-		var jump = 10
+		var speed = 5
+		var jump = 500
 		var acceleration = 50
-		var fall = 20
+		var fall = 200
 	var mouse = Mouse.new()
 	var move = Move.new()
 var player = Player.new()

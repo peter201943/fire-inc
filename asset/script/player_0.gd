@@ -31,6 +31,7 @@ var status			# status of the player at any given moment
 # movement
 var direction
 var velocity
+var can_jump = false
 
 
 
@@ -74,13 +75,14 @@ func _test_docs():
 	print(status.help)
 	print(options.help)
 	print(difficulty.help)
+	print(options.move.jump)
 
 
 
 
 func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
-	print( _fall( _user_jump( _walk( _user_move( args ) ) ) ) )
+	_fall( _user_jump( _walk( _user_move( args ) ) ) )
 
 
 
@@ -91,10 +93,14 @@ func _user_jump(args):
 	var direction = args[1]
 	var velocity = args[2]
 	
-	if not is_on_floor():
+	if not can_jump and is_on_floor():
+		can_jump = true
+	if not can_jump:
 		direction.y -= options.move.fall * delta
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if can_jump and Input.is_action_just_pressed("jump"):
 		direction.y = options.move.jump
+		can_jump = false
+		print("JUMPING!")
 	
 	return [delta, direction, velocity]
 
@@ -105,7 +111,9 @@ func _fall(args):
 	var delta = args[0]
 	var direction = args[1]
 	var velocity = args[2]
+	
 	move_and_slide(direction, Vector3.UP)
+	
 	return [delta, direction, velocity]
 
 
@@ -115,8 +123,10 @@ func _walk(args):
 	var delta = args[0]
 	var direction = args[1]
 	var velocity = args[2]
+	
 	velocity = velocity.linear_interpolate(direction * options.move.speed, options.move.acceleration * delta)
 	velocity = move_and_slide(velocity, Vector3.UP)
+	
 	return [delta, direction, velocity]
 
 

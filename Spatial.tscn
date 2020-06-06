@@ -54,7 +54,7 @@ material = SubResource( 5 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0286322, 0.1172, -0.150708 )
-amount = 200
+amount = 201
 lifetime = 0.5
 randomness = 1.0
 local_coords = false

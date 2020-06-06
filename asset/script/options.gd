@@ -7,9 +7,9 @@ class Player:
 	class Mouse:
 		var sensitivity = 0.03
 		class X:
-			var sensitivity = 10
+			var sensitivity_offset = +0.01
 		class Y:
-			var sensitivity = 10
+			var sensitivity_offset = -0.01
 		var x = X.new()
 		var y = Y.new()
 	class Move:

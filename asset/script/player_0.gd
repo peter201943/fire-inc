@@ -27,8 +27,16 @@ var status			# status of the player at any given moment
 
 
 
+# movement
+var direction
+var velocity
+
+
+
 
 func _ready():
+	direction = Vector3()
+	velocity = Vector3()
 	_bind()
 	_test_docs()
 
@@ -64,22 +72,47 @@ func _test_docs():
 
 
 func _physics_process(delta):
-	var args = [delta, Vector3()]
-	_jump( _move( args ) )
+	var args = [delta, Vector3(0.0, direction.y, 0.0)]
+	print( _fall( _user_jump( _walk( _user_move( args ) ) ) ) )
 
 
 
 
 
-func _jump(args):
+func _user_jump(args):
 	var delta = args[0]
 	var direction = args[1]
+	
+	if not is_on_floor():
+		direction.y -= options.move.fall * delta
+		
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		direction.y = options.move.jump
+	
 	return [delta, direction]
 
 
 
 
-func _move(args):
+func _fall(args):
+	var delta = args[0]
+	var direction = args[1]
+	move_and_slide(direction, Vector3.UP)
+	return [delta, direction]
+
+
+
+
+func _walk(args):
+	var delta = args[0]
+	var direction = args[1]
+	move_and_slide(direction, Vector3.UP)
+	return [delta, direction]
+
+
+
+
+func _user_move(args):
 	
 	var delta = args[0]
 	var direction = args[1]
@@ -92,7 +125,8 @@ func _move(args):
 		direction -= transform.basis.x			
 	elif Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
-	return [delta, direction]
+	
+	return [delta, direction.normalized()]
 
 
 

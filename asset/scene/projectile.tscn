@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 0, 0.0156863, 0.898039, 0.498039 )
+emission_enabled = true
+emission = Color( 0.133333, 0.160784, 0.894118, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="projectileRB" type="RigidBody" groups=[
+"water",
+]]
+
+[node name="mainCS" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="mainMI" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )

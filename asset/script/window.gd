@@ -1,9 +1,8 @@
 extends Spatial
 
-var on_fire = false
-var burn_rate = 1
-var health = 100
-var dead = false
+var on_fire = true
+var burn_rate = float(1)
+var water_strength = float(0.05)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,18 +10,15 @@ func _ready():
 
 
 func _process(delta):
-	if not on_fire:
-		pass #set fire effects?
-	
-	if not dead and on_fire:
-		health -= burn_rate
-		#set fire effects?
-	if health <= 0:
-		dead = true
-		
-	if dead:
-		pass #TODO
+	# TODO - set fire effects
+	if on_fire:
+		pass
+	else:
+		pass
 
 
-func set_onfire(b):
-	on_fire = b
+# TODO - hook this up to collision event
+func on_collision():
+	burn_rate -= water_strength
+	if burn_rate <= 0:
+		on_fire = false

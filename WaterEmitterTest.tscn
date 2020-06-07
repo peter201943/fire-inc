@@ -12,7 +12,7 @@ albedo_color = Color( 0, 0, 0, 1 )
 [node name="Water Emitter" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -17.3322, 0.5553, 0 )
 current = true
 
 [node name="Water" parent="." instance=ExtResource( 1 )]

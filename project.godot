@@ -16,5 +16,5 @@ _global_script_class_icons={
 [application]
 
 config/name="Fire Inc"
-run/main_scene="res://WaterEmitterTest.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://asset/scene/test_0.tscn"
+config/icon="res://asset/misc/icon.png"

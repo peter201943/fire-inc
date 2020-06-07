@@ -1,14 +1,15 @@
-extends RigidBody
+extends KinematicBody
 
-export(Vector3) var movement
+export var distance = 5
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move()
+	# determine the vector within the cone the sphere will follow
+	var dir = rand_range(-.5, .5)
 	
-func move():
-	add_force(movement, transform.origin)
+	# if input is pushed send the sphere down the vector path
+	if Input.is_action_pressed("ui_accept"):
+		var move = Vector3(distance, 0, dir)
+		var colliding = move_and_collide(move*delta)

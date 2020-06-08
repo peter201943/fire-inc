@@ -140,7 +140,7 @@ margin_right = 238.0
 margin_bottom = 113.0
 text = "Resume"
 
-[node name="RestartButton2" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
 margin_left = 38.0
 margin_top = 140.0
 margin_right = 238.0
@@ -150,7 +150,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RestartButton3" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
 margin_left = 38.0
 margin_top = 209.0
 margin_right = 238.0
@@ -159,3 +159,8 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/ResumeButton" to="CanvasLayer/Control" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_RestartButton3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_QuitButton_pressed"]

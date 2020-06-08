@@ -18,15 +18,17 @@ func _process(delta):
 			notPaused = true
 			visible = false
 		
-
-func on_resume_pressed():
+	
+func _on_ResumeButton_pressed():
 	get_tree().paused = false
 	notPaused = true
 	visible = false
-	
-func on_restart_pressed():
-	get_tree().reload_current_scene()
 
-func on_quit_pressed():
+func _on_RestartButton_pressed():
+	get_tree().reload_current_scene()
+	notPaused = true
+	visible = false	
+
+func _on_QuitButton_pressed():
 	get_tree().quit()
 	pass

@@ -6,8 +6,10 @@
 [sub_resource type="CubeMesh" id=1]
 
 [sub_resource type="SpatialMaterial" id=2]
+params_line_width = 0.1
 albedo_color = Color( 0.862745, 0.117647, 0.117647, 1 )
 albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 5, 5, 5 )
 
 [node name="Building" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89853, 0.123389, 0 )

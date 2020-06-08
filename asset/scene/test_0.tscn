@@ -15,10 +15,10 @@
 [sub_resource type="Skin" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=5]
-seed = 23
+seed = 20
 period = 0.1
-persistence = 0.478
-lacunarity = 1.56
+persistence = 0.118
+lacunarity = 0.1
 
 [sub_resource type="NoiseTexture" id=6]
 width = 1024
@@ -27,7 +27,7 @@ bump_strength = 12.2
 noise = SubResource( 5 )
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.0666667, 0.592157, 0.847059, 1 )
+albedo_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 albedo_texture = SubResource( 6 )
 
 [sub_resource type="CapsuleShape" id=8]
@@ -90,7 +90,7 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Building" parent="." instance=ExtResource( 4 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 3.96108, -15.3763 )
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 1.2126, -15.3763 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -160,7 +160,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/ResumeButton" to="CanvasLayer/Control" method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_RestartButton3_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_QuitButton_pressed"]

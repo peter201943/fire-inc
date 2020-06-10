@@ -109,8 +109,8 @@ func _test_docs():
 func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
 	_user_fire(delta)
-	"""
 	_fall( _user_jump( _walk( _user_move( args ) ) ) )
+	"""
 	if p:
 		p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
 	"""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://asset/script/player_0.gd" type="Script" id=1]
 [ext_resource path="res://asset/script/options.gd" type="Script" id=2]
@@ -98,6 +98,8 @@ script = ExtResource( 3 )
 transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 1.2126, -15.3763 )
 
 [node name="UIElements" parent="." instance=ExtResource( 5 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 3.96108, -15.3763 )
+offset = Vector2( -1.44381, 3.96108 )
+scale = Vector2( 7, 7 )
+transform = Transform2D( 7, 0, 0, 7, -1.44381, 3.96108 )
 
 [node name="GameTimer" parent="." instance=ExtResource( 6 )]

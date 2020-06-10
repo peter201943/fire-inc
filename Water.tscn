@@ -12,11 +12,16 @@ flags_unshaded = true
 vertex_color_use_as_albedo = true
 albedo_color = Color( 0.223529, 0.690196, 0.831373, 0.862745 )
 
-[node name="Water" type="KinematicBody"]
+[node name="Water" type="RigidBody"]
 collision_mask = 2
+gravity_scale = 0.2
+contacts_reported = 5
+contact_monitor = true
 script = ExtResource( 1 )
+distance = 50
 
 [node name="Sphere Collision" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Sphere Mesh" type="MeshInstance" parent="."]

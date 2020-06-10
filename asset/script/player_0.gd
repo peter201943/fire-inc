@@ -6,10 +6,6 @@ extends KinematicBody
 # https://github.com/GarbajYT/godot-projectile-weapons/blob/master/ProjectileStarter.gd
 # try this later: https://gitlab.com/monnef/golden-gadget
 # https://godotengine.org/qa/7850/how-to-combine-x-and-y-rotation-but-leave-z-untouched
-# https://godotengine.org/qa/234/how-to-get-the-screen-dimensions-in-gdscript
-# https://godotengine.org/qa/5878/set-mouse-position
-# https://docs.godotengine.org/en/stable/tutorials/inputs/mouse_and_input_coordinates.html
-# http://kidscancode.org/godot_recipes/2d/screen_wrap/
 
 
 # ARG! Curse you GDScript!
@@ -44,25 +40,21 @@ var can_jump = false
 
 
 # gun
-onready var projectile = preload("res://asset/scene/projectile.tscn")
-var p # TEMP TEMP TEMP
-var fire_delay = 1
-
+onready var projectile
+var moveDir
+var move
+var radius = 20
+var dist = 400
 
 
 
 func _ready():
-	
-	# Keep mouse in window
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	# reset direction and velocity
+	projectile = load("res://Water.tscn")
 	direction = Vector3()
 	velocity = Vector3()
-	
-	# misc
 	_bind()
 	_test_docs()
+	# set_axis_lock(, true)			# F U GODOT!
 
 
 
@@ -87,15 +79,16 @@ func _rotate(event):
 	"""Read the user's mouse and smoothly rotate them"""
 	# FIXME: SOMETHING IS REALLY WEIRD HERE!
 	if event is InputEventMouseMotion:
-		
-		# rotate the player
+		"""
+		set_rotation(Vector3(
+			deg2rad(-event.relative.y * options.mouse.sensitivity.x),
+			deg2rad(-event.relative.x * options.mouse.sensitivity.y),
+			0
+			))
+		"""
 		rotate_y(deg2rad(-event.relative.x * options.mouse.sensitivity.y))
 		rotate_x(deg2rad(-event.relative.y * options.mouse.sensitivity.x))
-		
-		# prevent gimbal lock
 		rotation.x = clamp(rotation.x, deg2rad(-90), deg2rad(90))
-		
-		# prevent rolling
 		rotation.z = 0
 
 
@@ -115,11 +108,12 @@ func _test_docs():
 
 func _physics_process(delta):
 	var args = [delta, Vector3(0.0, direction.y, 0.0), velocity]
-	_fall( _user_jump( _walk( _user_move( args ) ) ) )
 	_user_fire(delta)
+	"""
+	_fall( _user_jump( _walk( _user_move( args ) ) ) )
 	if p:
 		p.apply_impulse(p.transform.basis.z, -p.transform.basis.z * difficulty.fire.disperse.speed) 
-
+	"""
 
 
 
@@ -154,7 +148,7 @@ func _fall(args):
 	var direction = args[1]
 	var velocity = args[2]
 	
-	move_and_slide(direction, Vector3.UP)
+	#move_and_slide(direction, Vector3.UP)
 	
 	return [delta, direction, velocity]
 
@@ -196,22 +190,12 @@ func _user_move(args):
 	
 	return [delta, direction.normalized(), velocity]
 
-
-
-
 func _user_fire(delta):
-	"""Check if the user wants to fire and do so"""
-	if Input.is_action_pressed("fire") and fire_delay <= 0:
-		fire_delay = difficulty.fire.disperse.rate
-		p = projectile.instance()
-		add_child(p)
-	fire_delay -= delta
-
-
-
-
-
-
-
-
-
+	moveDir = rand_range(-radius, radius)
+	# Check if the user wants to fire and do so
+	if Input.is_action_pressed("fire"):
+		move = Vector3(moveDir, 0, -dist)
+		var instance = projectile.instance()
+		get_parent().add_child(instance)
+		instance.global_transform.origin = $Water.global_transform.origin
+		instance.add_central_force(move)

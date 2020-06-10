@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://asset/script/player_0.gd" type="Script" id=1]
 [ext_resource path="res://asset/script/options.gd" type="Script" id=2]
 [ext_resource path="res://asset/script/status.gd" type="Script" id=3]
 [ext_resource path="res://asset/scene/building.tscn" type="PackedScene" id=4]
-[ext_resource path="res://asset/scene/game_timer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UIElements.tscn" type="PackedScene" id=5]
+[ext_resource path="res://asset/scene/game_timer.tscn" type="PackedScene" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -15,10 +16,10 @@
 [sub_resource type="Skin" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=5]
-seed = 23
+seed = 20
 period = 0.1
-persistence = 0.478
-lacunarity = 1.56
+persistence = 0.118
+lacunarity = 0.1
 
 [sub_resource type="NoiseTexture" id=6]
 width = 1024
@@ -27,7 +28,7 @@ bump_strength = 12.2
 noise = SubResource( 5 )
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.0666667, 0.592157, 0.847059, 1 )
+albedo_color = Color( 0.172549, 0.172549, 0.172549, 1 )
 albedo_texture = SubResource( 6 )
 
 [sub_resource type="CapsuleShape" id=8]
@@ -67,6 +68,7 @@ script = ExtResource( 1 )
 [node name="mainC" type="Camera" parent="playerKB"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0225646, 1.00913, 0 )
 cull_mask = 1048573
+current = true
 
 [node name="mainCS" type="CollisionShape" parent="playerKB"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
@@ -83,6 +85,9 @@ layers = 2
 mesh = SubResource( 13 )
 material/0 = null
 
+[node name="Water" type="Spatial" parent="playerKB"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1 )
+
 [node name="optionsN" type="Node" parent="."]
 script = ExtResource( 2 )
 
@@ -90,6 +95,11 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Building" parent="." instance=ExtResource( 4 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 3.96108, -15.3763 )
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 1.2126, -15.3763 )
 
-[node name="GameTimer" parent="." instance=ExtResource( 5 )]
+[node name="UIElements" parent="." instance=ExtResource( 5 )]
+offset = Vector2( -1.44381, 3.96108 )
+scale = Vector2( 7, 7 )
+transform = Transform2D( 7, 0, 0, 7, -1.44381, 3.96108 )
+
+[node name="GameTimer" parent="." instance=ExtResource( 6 )]

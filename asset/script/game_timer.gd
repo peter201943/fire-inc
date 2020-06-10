@@ -17,3 +17,6 @@ func _process(_delta):
 
 func timer_timeout():
 	display_value -= 1
+	if display_value <= 0:
+		display_value = 0
+		$"GameOver".visible = true

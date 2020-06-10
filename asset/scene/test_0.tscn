@@ -4,7 +4,7 @@
 [ext_resource path="res://asset/script/options.gd" type="Script" id=2]
 [ext_resource path="res://asset/script/status.gd" type="Script" id=3]
 [ext_resource path="res://asset/scene/building.tscn" type="PackedScene" id=4]
-[ext_resource path="res://asset/scene/Control.gd" type="Script" id=6]
+[ext_resource path="res://asset/scene/game_timer.tscn" type="PackedScene" id=5]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
@@ -15,10 +15,10 @@
 [sub_resource type="Skin" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=5]
-seed = 20
+seed = 23
 period = 0.1
-persistence = 0.118
-lacunarity = 0.1
+persistence = 0.478
+lacunarity = 1.56
 
 [sub_resource type="NoiseTexture" id=6]
 width = 1024
@@ -27,7 +27,7 @@ bump_strength = 12.2
 noise = SubResource( 5 )
 
 [sub_resource type="SpatialMaterial" id=7]
-albedo_color = Color( 0.172549, 0.172549, 0.172549, 1 )
+albedo_color = Color( 0.0666667, 0.592157, 0.847059, 1 )
 albedo_texture = SubResource( 6 )
 
 [sub_resource type="CapsuleShape" id=8]
@@ -90,77 +90,6 @@ script = ExtResource( 2 )
 script = ExtResource( 3 )
 
 [node name="Building" parent="." instance=ExtResource( 4 )]
-transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 1.2126, -15.3763 )
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, -1.44381, 3.96108, -15.3763 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-pause_mode = 2
-visible = false
-margin_right = 61.0
-margin_bottom = 62.0
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PauseButton" type="Button" parent="CanvasLayer/Control"]
-pause_mode = 2
-margin_left = 18.0
-margin_top = 19.0
-margin_right = 59.0
-margin_bottom = 56.0
-text = "||"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PausePanel" type="Panel" parent="CanvasLayer/Control/PauseButton"]
-margin_left = 350.0
-margin_top = 117.0
-margin_right = 623.0
-margin_bottom = 421.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/PauseButton/PausePanel"]
-margin_left = 42.0
-margin_top = 15.0
-margin_right = 230.0
-margin_bottom = 51.0
-text = "Paused"
-align = 1
-valign = 1
-
-[node name="ResumeButton" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
-margin_left = 38.0
-margin_top = 77.0
-margin_right = 238.0
-margin_bottom = 113.0
-text = "Resume"
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
-margin_left = 38.0
-margin_top = 140.0
-margin_right = 238.0
-margin_bottom = 176.0
-text = "Restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="QuitButton" type="Button" parent="CanvasLayer/Control/PauseButton/PausePanel"]
-margin_left = 38.0
-margin_top = 209.0
-margin_right = 238.0
-margin_bottom = 245.0
-text = "Exit"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/ResumeButton" to="CanvasLayer/Control" method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton2_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/RestartButton" to="CanvasLayer/Control" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_RestartButton3_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/PauseButton/PausePanel/QuitButton" to="CanvasLayer/Control" method="_on_QuitButton_pressed"]
+[node name="GameTimer" parent="." instance=ExtResource( 5 )]

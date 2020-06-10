@@ -14,27 +14,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseButton" type="Button" parent="Control"]
-pause_mode = 2
-margin_left = 18.0
-margin_top = 19.0
-margin_right = 59.0
-margin_bottom = 56.0
-text = "||"
+[node name="PausePanel" type="Panel" parent="Control"]
+margin_left = 368.0
+margin_top = 136.0
+margin_right = 641.0
+margin_bottom = 440.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PausePanel" type="Panel" parent="Control/PauseButton"]
-margin_left = 350.0
-margin_top = 117.0
-margin_right = 623.0
-margin_bottom = 421.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Control/PauseButton/PausePanel"]
+[node name="Label" type="Label" parent="Control/PausePanel"]
 margin_left = 42.0
 margin_top = 15.0
 margin_right = 230.0
@@ -43,14 +32,14 @@ text = "Paused"
 align = 1
 valign = 1
 
-[node name="ResumeButton" type="Button" parent="Control/PauseButton/PausePanel"]
+[node name="ResumeButton" type="Button" parent="Control/PausePanel"]
 margin_left = 38.0
 margin_top = 77.0
 margin_right = 238.0
 margin_bottom = 113.0
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="Control/PauseButton/PausePanel"]
+[node name="RestartButton" type="Button" parent="Control/PausePanel"]
 margin_left = 38.0
 margin_top = 140.0
 margin_right = 238.0
@@ -60,7 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuitButton" type="Button" parent="Control/PauseButton/PausePanel"]
+[node name="QuitButton" type="Button" parent="Control/PausePanel"]
 margin_left = 38.0
 margin_top = 209.0
 margin_right = 238.0
@@ -69,8 +58,8 @@ text = "Exit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Control/PauseButton/PausePanel/ResumeButton" to="Control" method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="Control/PauseButton/PausePanel/RestartButton" to="Control" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="Control/PauseButton/PausePanel/RestartButton" to="Control" method="_on_RestartButton2_pressed"]
-[connection signal="pressed" from="Control/PauseButton/PausePanel/QuitButton" to="Control" method="_on_QuitButton_pressed"]
-[connection signal="pressed" from="Control/PauseButton/PausePanel/QuitButton" to="Control" method="_on_RestartButton3_pressed"]
+[connection signal="pressed" from="Control/PausePanel/ResumeButton" to="Control" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Control/PausePanel/RestartButton" to="Control" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Control/PausePanel/RestartButton" to="Control" method="_on_RestartButton2_pressed"]
+[connection signal="pressed" from="Control/PausePanel/QuitButton" to="Control" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Control/PausePanel/QuitButton" to="Control" method="_on_RestartButton3_pressed"]

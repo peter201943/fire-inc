@@ -45,6 +45,7 @@ var STRENGTH = 1500
 
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	projectile = load("res://Water.tscn")
 	direction = Vector3()
 	velocity = Vector3()

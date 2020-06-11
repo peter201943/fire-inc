@@ -190,4 +190,4 @@ func _user_fire(delta):
 		var instance = projectile.instance()
 		get_parent().add_child(instance)
 		instance.global_transform.origin = $Water.global_transform.origin
-		instance.apply_impulse(transform.basis.z, -get_global_transform().basis.z*100)
+		instance.apply_impulse(transform.basis.z, -get_global_transform().basis.z*30)

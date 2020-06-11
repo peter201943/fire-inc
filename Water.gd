@@ -5,7 +5,7 @@ func _ready():
 
 
 func _on_Area_body_entered(body):
-	if body.is_in_group("Window"):
+	if body.get_parent().is_in_group("Window"):
 		print("window hit me")
-		body.hit()
+		body.get_parent().hit()
 	queue_free()

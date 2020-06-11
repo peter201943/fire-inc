@@ -23,4 +23,3 @@ func hit():
 	burn_rate -= water_strength
 	if burn_rate <= 0:
 		on_fire = false
-	print(burn_rate)

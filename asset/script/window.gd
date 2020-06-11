@@ -18,7 +18,8 @@ func _process(delta):
 
 
 # TODO - hook this up to collision event
-func on_collision():
+func hit():
+	print("i'm being called")
 	burn_rate -= water_strength
 	if burn_rate <= 0:
 		on_fire = false

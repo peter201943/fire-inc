@@ -41,11 +41,7 @@ var can_jump = false
 
 # gun
 onready var projectile
-var moveDir
-var move
-var radius = 20
-var dist = 400
-
+var STRENGTH = 1500
 
 
 func _ready():
@@ -168,9 +164,6 @@ func _walk(args):
 	
 	return [delta, direction, velocity]
 
-
-
-
 func _user_move(args):
 	
 	"""Check if the user wants to move"""
@@ -184,18 +177,16 @@ func _user_move(args):
 	elif Input.is_action_pressed("move_backward"):
 		direction += transform.basis.z
 	if Input.is_action_pressed("move_left"):
-		direction -= transform.basis.x			
+		direction -= transform.basis.x
 	elif Input.is_action_pressed("move_right"):
 		direction += transform.basis.x
 	
 	return [delta, direction.normalized(), velocity]
 
 func _user_fire(delta):
-	moveDir = rand_range(-radius, radius)
 	# Check if the user wants to fire and do so
 	if Input.is_action_pressed("fire"):
-		move = Vector3(moveDir, 0, -dist)
 		var instance = projectile.instance()
 		get_parent().add_child(instance)
 		instance.global_transform.origin = $Water.global_transform.origin
-		instance.add_central_force(move)
+		instance.apply_impulse(transform.basis.z, -get_global_transform().basis.z*100)
